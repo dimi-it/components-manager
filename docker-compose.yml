@@ -1,0 +1,6 @@
+﻿services:
+  componentsmanager:
+    image: componentsmanager
+    build:
+      context: .
+      dockerfile: ComponentsManager/Dockerfile
