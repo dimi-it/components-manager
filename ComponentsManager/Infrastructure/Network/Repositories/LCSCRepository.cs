@@ -5,7 +5,7 @@ using ComponentsManager.Infrastructure.Network.DTOs.LCSC;
 
 namespace ComponentsManager.Infrastructure.Network.Repositories;
 
-public class LCSCRepository : INetRepository<LCSCResultNetDTO>
+public class LCSCRepository : INetRepository<LCSCPartNetDto>
 {
     private readonly string _baseAddress = "https://wmsc.lcsc.com";
     private HttpClient _httpClient;
@@ -21,7 +21,7 @@ public class LCSCRepository : INetRepository<LCSCResultNetDTO>
         _httpClient.DefaultRequestHeaders.Add("User-Agent","Other");
     }
 
-    public async Task<LCSCResultNetDTO?> GetPartAsync(string productCode)
+    public async Task<LCSCPartNetDto?> GetPartNetAsync(string productCode)
     {
         await using Stream stream = await _httpClient
             .GetStreamAsync($"ftps/wm/product/detail?productCode={productCode}");

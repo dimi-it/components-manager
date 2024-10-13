@@ -2,5 +2,5 @@
 
 public interface IPartDbDTO
 {
-    
+    long ProductId { get; }
 }

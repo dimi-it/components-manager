@@ -4,7 +4,7 @@ using ComponentsManager.Infrastructure.Databases.DTOs;
 namespace ComponentsManager.Infrastructure.Network.DTOs.LCSC;
 
 [method: JsonConstructor]
-public record LCSCResultNetDTO(
+public record LCSCPartNetDto(
         [property: JsonPropertyName("productId")] int ProductId,
         [property: JsonPropertyName("productCode")] string ProductCode,
         [property: JsonPropertyName("productModel")] string ProductModel,
@@ -31,14 +31,14 @@ public record LCSCResultNetDTO(
         [property: JsonPropertyName("stockSz")] int StockSz,
         [property: JsonPropertyName("stockJs")] int StockJs,
         [property: JsonPropertyName("wmStockHk")] int WmStockHk,
-        [property: JsonPropertyName("domesticStockVO")] LCSCStockNetDTO DomesticStockVO,
-        [property: JsonPropertyName("overseasStockVO")] LCSCStockNetDTO OverseasStockVO,
+        [property: JsonPropertyName("domesticStockVO")] LCSCStockNetDTO DomesticStock,
+        [property: JsonPropertyName("overseasStockVO")] LCSCStockNetDTO OverseasStock,
         [property: JsonPropertyName("productPriceList")] IReadOnlyList<LCSCProductPriceNetDTO> ProductPriceList,
         [property: JsonPropertyName("productImages")] IReadOnlyList<string> ProductImages,
-        [property: JsonPropertyName("pdfUrl")] string PdfUrl,
+        [property: JsonPropertyName("pdfUrl")] string? PdfUrl,
         [property: JsonPropertyName("productDescEn")] string? ProductDescEn,
         [property: JsonPropertyName("productIntroEn")] string ProductIntroEn,
-        [property: JsonPropertyName("paramVOList")] IReadOnlyList<LCSCParameterNetDTO> ParamVOList,
+        [property: JsonPropertyName("paramVOList")] IReadOnlyList<LCSCParameterNetDTO> ParamList,
         [property: JsonPropertyName("productArrange")] string ProductArrange,
         [property: JsonPropertyName("productWeight")] double ProductWeight,
         [property: JsonPropertyName("foreignWeight")] object? ForeignWeight,
@@ -55,10 +55,59 @@ public record LCSCResultNetDTO(
         [property: JsonPropertyName("weight")] double Weight,
         [property: JsonPropertyName("hasThirdPartyStock")] bool HasThirdPartyStock,
         [property: JsonPropertyName("flashSaleProductPO")] object? FlashSaleProductPO
-) : IResultNetDTO
+) : IPartNetDTO
 {
-        public IPartDbDTO ToPartDbDTO()
+        public DistributorPartDbDTO ToDistributorPartDbDTO()
         {
-                throw new NotImplementedException();
+                return new DistributorPartDbDTO()
+                {
+                        ManufacturerProductCode = ProductCode,
+                        Manufacturer = BrandNameEn,
+                        VendorProductCode = ProductCode,
+                        Vendor = NetworkProvider.LCSC,
+                        Category = LCSCCategoryConversionMap.TryParseCategory(ParentCatalogName, CatalogName) 
+                                   ?? throw new ArgumentNullException("Category", $"{ParentCatalogName}_{CatalogName}"),
+                        Parameters = ParseParameters(),
+                        DatasheetUrl = PdfUrl,
+                        ImagesUrl = ProductImages as List<string> ?? new List<string>()
+                };
+        }
+
+        public List<Parameter> ParseParameters()
+        {
+                List<Parameter> parameters = new List<Parameter>();
+                foreach (LCSCParameterNetDTO lcscParameter in ParamList)
+                {
+                        Parameter parameter = TryParseParameter(lcscParameter) 
+                                              ?? throw new ArgumentNullException("Parameter", lcscParameter.ParamNameEn);
+                        parameters.Add(parameter);
+                }
+                //add footprint
+                parameters.Add(new Parameter()
+                {
+                        Name = ParameterEnum.Footprint,
+                        ValueString = EncapStandard,
+                        Value = null
+                });
+                
+                return parameters;
+        }
+
+        public Parameter? TryParseParameter(LCSCParameterNetDTO lcscParameter)
+        {
+                ParameterEnum parameterName = LCSCParameterConversionMap.TryParseParameter(lcscParameter.ParamNameEn);
+                if(parameterName != ParameterEnum.None)
+                {
+                        return new Parameter()
+                        {
+                                Name = parameterName,
+                                ValueString = lcscParameter.ParamValueEn,
+                                Value = lcscParameter.ParamValueEnForSearch == -1.0d
+                                        ? null
+                                        : lcscParameter.ParamValueEnForSearch
+                        };
+                }
+
+                return null;
         }
 }

@@ -2,7 +2,7 @@
 
 namespace ComponentsManager.Infrastructure.Network.DTOs;
 
-public interface IResultNetDTO
+public interface IPartNetDTO
 {
-    public IPartDbDTO ToPartDbDTO();
+    public DistributorPartDbDTO ToDistributorPartDbDTO();
 }

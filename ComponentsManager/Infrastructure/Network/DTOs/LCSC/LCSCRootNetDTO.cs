@@ -6,5 +6,5 @@ namespace ComponentsManager.Infrastructure.Network.DTOs.LCSC;
 public record LCSCRootNetDTO(
     [property: JsonPropertyName("code")] int Code,
     [property: JsonPropertyName("msg")] string? Msg,
-    [property: JsonPropertyName("result")] LCSCResultNetDTO? Result
+    [property: JsonPropertyName("result")] LCSCPartNetDto? Result
 );
