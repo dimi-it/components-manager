@@ -16,9 +16,7 @@
 
     <ItemGroup>
       <Folder Include="Infrastructure\Databases\Docker\" />
-      <Folder Include="Infrastructure\Databases\DTOs\" />
       <Folder Include="Infrastructure\Databases\Repositories\" />
-      <Folder Include="Infrastructure\Network\Repositories\" />
     </ItemGroup>
 
 </Project>

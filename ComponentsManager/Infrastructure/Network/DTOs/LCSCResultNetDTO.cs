@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using ComponentsManager.Infrastructure.Databases.DTOs;
 
 namespace ComponentsManager.Infrastructure.Network.DTOs;
 
@@ -54,4 +55,10 @@ public record LCSCResultNetDTO(
         [property: JsonPropertyName("weight")] double Weight,
         [property: JsonPropertyName("hasThirdPartyStock")] bool HasThirdPartyStock,
         [property: JsonPropertyName("flashSaleProductPO")] object? FlashSaleProductPO
-);
+) : IResultNetDTO
+{
+        public IPartDbDTO ToPartDbDTO()
+        {
+                throw new NotImplementedException();
+        }
+}
