@@ -1,6 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using System.Text.Json;
 using ComponentsManager.Infrastructure.Network.DTOs;
+using ComponentsManager.Infrastructure.Network.DTOs.LCSC;
 
 namespace ComponentsManager.Infrastructure.Network.Repositories;
 

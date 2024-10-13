@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using ComponentsManager.Infrastructure.Databases.DTOs;
 
-namespace ComponentsManager.Infrastructure.Network.DTOs;
+namespace ComponentsManager.Infrastructure.Network.DTOs.LCSC;
 
 [method: JsonConstructor]
 public record LCSCResultNetDTO(
