@@ -1,7 +1,6 @@
 ﻿using ComponentsManager.Infrastructure.Databases.DTOs;
-using ComponentsManager.Infrastructure.Network.DTOs;
 
-namespace ComponentsManager.Infrastructure.Network.Repositories;
+namespace ComponentsManager.Infrastructure.Network;
 
 public interface INetRepository<T> where T: IPartNetDTO
 {

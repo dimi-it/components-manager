@@ -1,6 +1,6 @@
 ﻿using ComponentsManager.Infrastructure.Databases.DTOs;
 
-namespace ComponentsManager.Infrastructure.Network.DTOs.LCSC;
+namespace ComponentsManager.Infrastructure.Network.LCSC.Maps;
 
 public static class LCSCParameterConversionMap
 {

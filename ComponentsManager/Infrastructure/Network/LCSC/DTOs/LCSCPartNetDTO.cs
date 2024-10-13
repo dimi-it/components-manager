@@ -1,10 +1,11 @@
 ﻿using System.Text.Json.Serialization;
 using ComponentsManager.Infrastructure.Databases.DTOs;
+using ComponentsManager.Infrastructure.Network.LCSC.Maps;
 
-namespace ComponentsManager.Infrastructure.Network.DTOs.LCSC;
+namespace ComponentsManager.Infrastructure.Network.LCSC.DTOs;
 
 [method: JsonConstructor]
-public record LCSCPartNetDto(
+public record LCSCPartNetDTO(
         [property: JsonPropertyName("productId")] int ProductId,
         [property: JsonPropertyName("productCode")] string ProductCode,
         [property: JsonPropertyName("productModel")] string ProductModel,

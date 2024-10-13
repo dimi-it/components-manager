@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ComponentsManager.Infrastructure.Network.DTOs.LCSC;
+namespace ComponentsManager.Infrastructure.Network.LCSC.DTOs;
 
 [method: JsonConstructor]
 public record LCSCProductPriceNetDTO(
