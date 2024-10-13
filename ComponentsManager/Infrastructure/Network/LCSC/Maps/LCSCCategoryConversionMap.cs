@@ -1,4 +1,5 @@
-﻿using ComponentsManager.Infrastructure.Databases.DTOs;
+﻿using ComponentsManager.Infrastructure.Databases.Const;
+using ComponentsManager.Infrastructure.Databases.DTOs;
 
 namespace ComponentsManager.Infrastructure.Network.LCSC.Maps;
 
@@ -22,7 +23,7 @@ public class LCSCCategoryConversionMap
         return map.GetValueOrDefault(categoryName);
     }
 
-    public static Category? TryParseCategory(string topCategoryName, string bottomCategoryName)
+    public static CategoryDTO? TryParseCategory(string topCategoryName, string bottomCategoryName)
     {
         TopLevelCategory topLevelCategory = TryParseLevelCategory(_topLevelCategoryMap, topCategoryName);
         BottomLevelCategory bottomLevelCategory = TryParseLevelCategory(_bottomLevelCategories, bottomCategoryName);
@@ -31,7 +32,7 @@ public class LCSCCategoryConversionMap
             return null;
         }
 
-        return new Category()
+        return new CategoryDTO()
         {
             TopLevelCategory = (TopLevelCategory)topLevelCategory,
             BottomLevelCategory = bottomLevelCategory

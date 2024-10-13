@@ -11,8 +11,8 @@ public class DistributorPartDbDTO: IPartDbDTO
     public string Manufacturer { get; set; }
     public string VendorProductCode { get; set; }
     public NetworkProvider Vendor { get; set; }
-    public Category Category { get; set; }
-    public List<Parameter> Parameters { get; set; }
+    public CategoryDTO CategoryDto { get; set; }
+    public List<ParameterDTO> Parameters { get; set; }
     public string? DatasheetUrl { get; set; }
     public List<string> ImagesUrl { get; set; }
 

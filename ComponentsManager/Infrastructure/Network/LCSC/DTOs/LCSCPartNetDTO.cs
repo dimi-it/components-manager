@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using ComponentsManager.Infrastructure.Databases.Const;
 using ComponentsManager.Infrastructure.Databases.DTOs;
 using ComponentsManager.Infrastructure.Network.LCSC.Maps;
 
@@ -66,7 +67,7 @@ public record LCSCPartNetDTO(
                         Manufacturer = BrandNameEn,
                         VendorProductCode = ProductCode,
                         Vendor = NetworkProvider.LCSC,
-                        Category = LCSCCategoryConversionMap.TryParseCategory(ParentCatalogName, CatalogName) 
+                        CategoryDto = LCSCCategoryConversionMap.TryParseCategory(ParentCatalogName, CatalogName) 
                                    ?? throw new ArgumentNullException("Category", $"{ParentCatalogName}_{CatalogName}"),
                         Parameters = ParseParameters(),
                         DatasheetUrl = PdfUrl,
@@ -74,17 +75,17 @@ public record LCSCPartNetDTO(
                 };
         }
 
-        public List<Parameter> ParseParameters()
+        public List<ParameterDTO> ParseParameters()
         {
-                List<Parameter> parameters = new List<Parameter>();
+                List<ParameterDTO> parameters = new List<ParameterDTO>();
                 foreach (LCSCParameterNetDTO lcscParameter in ParamList)
                 {
-                        Parameter parameter = TryParseParameter(lcscParameter) 
+                        ParameterDTO parameterDto = TryParseParameter(lcscParameter) 
                                               ?? throw new ArgumentNullException("Parameter", lcscParameter.ParamNameEn);
-                        parameters.Add(parameter);
+                        parameters.Add(parameterDto);
                 }
                 //add footprint
-                parameters.Add(new Parameter()
+                parameters.Add(new ParameterDTO()
                 {
                         Name = ParameterEnum.Footprint,
                         ValueString = EncapStandard,
@@ -94,12 +95,12 @@ public record LCSCPartNetDTO(
                 return parameters;
         }
 
-        public Parameter? TryParseParameter(LCSCParameterNetDTO lcscParameter)
+        public ParameterDTO? TryParseParameter(LCSCParameterNetDTO lcscParameter)
         {
                 ParameterEnum parameterName = LCSCParameterConversionMap.TryParseParameter(lcscParameter.ParamNameEn);
                 if(parameterName != ParameterEnum.None)
                 {
-                        return new Parameter()
+                        return new ParameterDTO()
                         {
                                 Name = parameterName,
                                 ValueString = lcscParameter.ParamValueEn,
