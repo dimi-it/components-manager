@@ -68,7 +68,7 @@ public record LCSCPartNetDTO(
                         VendorProductCode = ProductCode,
                         Vendor = NetworkProvider.LCSC,
                         CategoryDto = LCSCCategoryConversionMap.TryParseCategory(ParentCatalogName, CatalogName) 
-                                   ?? throw new ArgumentNullException("Category", $"{ParentCatalogName}_{CatalogName}"),
+                                   ?? throw new ArgumentNullException("Category", $"{ParentCatalogName} --> {CatalogName}"),
                         Parameters = ParseParameters(),
                         DatasheetUrl = PdfUrl,
                         ImagesUrl = ProductImages as List<string> ?? new List<string>()
