@@ -2,7 +2,9 @@
 using ComponentsManager.Infrastructure.Databases.DTOs;
 
 namespace ComponentsManager.Infrastructure.Network.LCSC.Maps;
-
+//Two level way conversion to be implemented(Dictionary<Type<string, string>, Enum>)
+//or
+//Category TREE classes
 public class LCSCCategoryConversionMap
 {
     private static readonly Dictionary<string, TopLevelCategory> _topLevelCategoryMap = new Dictionary<string, TopLevelCategory>()
