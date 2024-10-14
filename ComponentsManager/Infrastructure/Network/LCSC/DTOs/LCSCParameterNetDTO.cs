@@ -10,6 +10,6 @@ public record LCSCParameterNetDTO(
     [property: JsonPropertyName("paramValue")] string ParamValue,
     [property: JsonPropertyName("paramValueEn")] string ParamValueEn,
     [property: JsonPropertyName("paramValueEnForSearch")] double? ParamValueEnForSearch,
-    [property: JsonPropertyName("isMain")] bool IsMain,
+    [property: JsonPropertyName("isMain")] bool? IsMain,
     [property: JsonPropertyName("sortNumber")] int SortNumber
 );
