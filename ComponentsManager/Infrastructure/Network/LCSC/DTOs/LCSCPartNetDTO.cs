@@ -63,7 +63,7 @@ public record LCSCPartNetDTO(
         {
                 return new DistributorPartDbDTO()
                 {
-                        ManufacturerProductCode = ProductCode,
+                        ManufacturerProductCode = ProductModel,
                         Manufacturer = BrandNameEn,
                         VendorProductCode = ProductCode,
                         Vendor = NetworkProvider.LCSC,
