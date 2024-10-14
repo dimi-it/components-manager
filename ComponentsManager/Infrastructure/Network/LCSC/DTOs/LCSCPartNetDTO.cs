@@ -40,7 +40,7 @@ public record LCSCPartNetDTO(
         [property: JsonPropertyName("pdfUrl")] string? PdfUrl,
         [property: JsonPropertyName("productDescEn")] string? ProductDescEn,
         [property: JsonPropertyName("productIntroEn")] string ProductIntroEn,
-        [property: JsonPropertyName("paramVOList")] IReadOnlyList<LCSCParameterNetDTO> ParamList,
+        [property: JsonPropertyName("paramVOList")] IReadOnlyList<LCSCParameterNetDTO>? ParamList,
         [property: JsonPropertyName("productArrange")] string ProductArrange,
         [property: JsonPropertyName("productWeight")] double ProductWeight,
         [property: JsonPropertyName("foreignWeight")] object? ForeignWeight,
@@ -78,12 +78,17 @@ public record LCSCPartNetDTO(
         public List<ParameterDTO> ParseParameters()
         {
                 List<ParameterDTO> parameters = new List<ParameterDTO>();
-                foreach (LCSCParameterNetDTO lcscParameter in ParamList)
+                if (ParamList != null)
                 {
-                        ParameterDTO parameterDto = TryParseParameter(lcscParameter) 
-                                              ?? throw new ArgumentNullException("Parameter", lcscParameter.ParamNameEn);
-                        parameters.Add(parameterDto);
+                        foreach (LCSCParameterNetDTO lcscParameter in ParamList)
+                        {
+                                ParameterDTO parameterDto = TryParseParameter(lcscParameter)
+                                                            ?? throw new ArgumentNullException("Parameter",
+                                                                    lcscParameter.ParamNameEn);
+                                parameters.Add(parameterDto);
+                        }
                 }
+
                 //add footprint
                 parameters.Add(new ParameterDTO()
                 {
