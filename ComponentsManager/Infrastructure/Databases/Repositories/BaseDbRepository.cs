@@ -25,9 +25,9 @@ public class BaseDbRepository<T>: IDbRepository<T> where T: class, IDbEntity
 
     }
 
-    public Task CreateAsync(T t)
+    public virtual async Task CreateAsync(T t)
     {
-        return Collection.InsertOneAsync(t);
+        await Collection.InsertOneAsync(t);
     }
 
     public async Task<bool> UpdateOneAsync(T t)

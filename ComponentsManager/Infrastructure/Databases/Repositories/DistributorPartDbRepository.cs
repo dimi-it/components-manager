@@ -11,7 +11,19 @@ public class DistributorPartDbRepository: BaseDbRepository<DistributorPartDbDTO>
     {
         _collectionName = collectionName ?? _collectionName;
     }
-    
+
+    public override async Task CreateAsync(DistributorPartDbDTO part)
+    {
+        if (await GetByVendorProductCodeAsync(part.VendorProductCode) is null)
+        {
+            await base.CreateAsync(part);
+        }
+        else
+        {
+            throw new ArgumentException($"Distributor part {part.VendorProductCode} already present in collection");
+        }
+    }
+
     public async Task<DistributorPartDbDTO?> GetByVendorProductCodeAsync(string vendorProductCode)
     {
         IAsyncCursor<DistributorPartDbDTO> result = await Collection.FindAsync(t => t.VendorProductCode == vendorProductCode);
