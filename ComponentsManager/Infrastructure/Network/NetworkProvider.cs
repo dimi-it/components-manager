@@ -2,6 +2,7 @@
 
 public enum NetworkProvider
 {
+    None,
     LCSC,
     Mouser,
     DigiKey,
