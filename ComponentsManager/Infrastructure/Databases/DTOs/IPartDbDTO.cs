@@ -1,6 +1,6 @@
 ﻿namespace ComponentsManager.Infrastructure.Databases.DTOs;
 
-public interface IPartDbDTO
+public interface IPartDbDTO: IDbEntity
 {
-    long ProductId { get; }
+    
 }

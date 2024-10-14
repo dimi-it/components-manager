@@ -1,12 +1,16 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 using ComponentsManager.Infrastructure.Network;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace ComponentsManager.Infrastructure.Databases.DTOs;
 
 public class DistributorPartDbDTO: IPartDbDTO
 {
-    public long ProductId { get; set; }
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string Id { get; set; }
     public string ManufacturerProductCode { get; set; }
     public string Manufacturer { get; set; }
     public string VendorProductCode { get; set; }
