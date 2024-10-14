@@ -6,13 +6,23 @@ public enum ParameterEnum
     
     Footprint,
     
-    Resistance,
+    Diameter,
+    Lenght,
+    LeadSpacing,
     Tolerance,
-    Power,
     Type,
-    OverloadVoltage,
+    
     TemperatureCoefficient,
     OperatingTemperatureRange,
+    LifetimeTemperature,
+    
+    Resistance,
+
+    OverloadVoltage,
     VoltageRated,
-    Capacitance
+
+    Capacitance,
+
+    Power,
+
 }

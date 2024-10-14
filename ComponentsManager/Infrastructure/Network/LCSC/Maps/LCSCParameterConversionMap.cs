@@ -13,9 +13,15 @@ public static class LCSCParameterConversionMap
         { "Temperature Coefficient", ParameterEnum.TemperatureCoefficient },
         { "Tolerance", ParameterEnum.Tolerance },
         { "Operating Temperature Range", ParameterEnum.OperatingTemperatureRange },
+        { "Operating Temperature", ParameterEnum.OperatingTemperatureRange },
         { "Resistance", ParameterEnum.Resistance },
-        {"Voltage Rated", ParameterEnum.VoltageRated},
-        {"Capacitance", ParameterEnum.Capacitance},
+        { "Voltage Rated", ParameterEnum.VoltageRated },
+        { "Rated Voltage", ParameterEnum.VoltageRated },
+        { "Capacitance", ParameterEnum.Capacitance },
+        { "φD", ParameterEnum.Diameter }, 
+        { "L", ParameterEnum.Lenght }, 
+        { "Lead Spacing", ParameterEnum.LeadSpacing }, 
+        { "Lifetime @ Temp", ParameterEnum.LifetimeTemperature }, 
     };
 
     public static ParameterEnum TryParseParameter(string parameterName)

@@ -4,12 +4,38 @@ public enum BottomLevelCategory
 {
     None,
     //resistor
-    SurfaceMount,
+    ResistorSMD,
     Shunt,
     ThroughHole,
     AluminiumCase,
     Array,
     Potentiometer,
     //Capacitor
-    Ceramic
+    CapacitorCeramicSMD,
+    CapacitorAluminiumSMD,
+    CapacitorAluminiumLeaded,
+    //Connectors
+    TerminalBlock,
+    USB,
+    //Diodes
+    Schottky,
+    Switching,
+    //CircuitProtection
+    ESD,
+    ResettableFuse,
+    //Relay
+    PowerRelay,
+    //Coils
+    InductorSMD,
+    //Opto
+    LedIndication,
+    //Switches
+    Tactile,
+    //PowerManagement
+    LDO,
+    DCDC,
+    //Transistor
+    Mosfet,
+    //ComunicationModule
+    WiFi,
 }

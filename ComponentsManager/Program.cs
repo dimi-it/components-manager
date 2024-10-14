@@ -7,39 +7,40 @@ using ComponentsManager.Infrastructure.Network.LCSC.DTOs;
 
 Console.WriteLine("Hello, I'm your Components Manager!");
 
-string partCode = "C2934560";
 string connectionString = "mongodb://mongo_user:mongo_pswd@localhost:27017/";
 string dbName = "componentsDb";
 
 LCSCRepository lcscRepository = new LCSCRepository();
 DistributorPartDbRepository distributorPartDbRepository = new DistributorPartDbRepository(new MongoConnection(connectionString, dbName));
 
-try
-{
-    DistributorPartDbDTO? part = await lcscRepository.GetDistributorPartAsync(partCode);
-    if (part is not null)
-    {
-        // Console.WriteLine(part.ToString());
-        // await distributorPartDbRepository.CreateAsync(part);
 
-        if (await distributorPartDbRepository.GetByVendorProductCodeAsync(part.VendorProductCode) is null)
+
+async Task TryInsert(string partCode)
+{
+    if (await distributorPartDbRepository.GetByVendorProductCodeAsync(partCode) is null)
+    {
+        try
         {
-            Console.WriteLine($"{part.ManufacturerProductCode} added to db");
-            await distributorPartDbRepository.CreateAsync(part);
+            DistributorPartDbDTO? part = await lcscRepository.GetDistributorPartAsync(partCode);
+            if (part is not null)
+            {
+                Console.WriteLine($"{part.VendorProductCode} added to db");
+                await distributorPartDbRepository.CreateAsync(part);
+            }
+            else
+            {
+                Console.WriteLine("Not found");
+            }
         }
-        else
+        catch (ArgumentNullException e)
         {
-            Console.WriteLine($"{part.ManufacturerProductCode} already present");
+            Console.WriteLine($"Error, missing: {e.Message}");
         }
     }
     else
     {
-        Console.WriteLine("Not found");
+        Console.WriteLine($"{partCode} already present");
     }
+    
 }
-catch (ArgumentNullException e)
-{
-    Console.WriteLine($"Error, missing: {e.Message}");
-}
-
 
