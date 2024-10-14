@@ -4,7 +4,7 @@ using ComponentsManager.Infrastructure.Network.LCSC.DTOs;
 
 namespace ComponentsManager.Infrastructure.Network.LCSC;
 
-public class LCSCRepository : INetRepository<LCSCPartNetDTO>
+public class LCSCRepository : BaseNetRepository<LCSCPartNetDTO>
 {
     private readonly string _baseAddress = "https://wmsc.lcsc.com";
     private HttpClient _httpClient;
@@ -18,9 +18,10 @@ public class LCSCRepository : INetRepository<LCSCPartNetDTO>
         };
         _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         _httpClient.DefaultRequestHeaders.Add("User-Agent","Other");
+        INetRepository<LCSCPartNetDTO> f = this;
     }
 
-    public async Task<LCSCPartNetDTO?> GetPartNetAsync(string productCode)
+    public override async Task<LCSCPartNetDTO?> GetPartNetAsync(string productCode)
     {
         await using Stream stream = await _httpClient
             .GetStreamAsync($"ftps/wm/product/detail?productCode={productCode}");

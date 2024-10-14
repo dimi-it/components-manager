@@ -6,14 +6,21 @@ using ComponentsManager.Infrastructure.Network.LCSC.DTOs;
 
 Console.WriteLine("Hello, I'm your Components Manager!");
 LCSCRepository lcscRepository = new LCSCRepository();
-LCSCPartNetDTO? lcscResultNetDto = await lcscRepository.GetPartNetAsync("C14445");
+string partCode = "C167220";
 
-if (lcscResultNetDto != null)
+try
 {
-    DistributorPartDbDTO part = lcscResultNetDto.ToDistributorPartDbDTO();
-    Console.WriteLine(part.ToString());
+    DistributorPartDbDTO? part = await lcscRepository.GetDistributorPartAsync(partCode);
+    if (part is not null)
+    {
+        Console.WriteLine(part.ToString());
+    }
+    else
+    {
+        Console.WriteLine("Not found");
+    }
 }
-else
+catch (ArgumentNullException e)
 {
-    Console.WriteLine("Not found");
+    Console.WriteLine(e.Message);
 }

@@ -59,7 +59,7 @@ public record LCSCPartNetDTO(
         [property: JsonPropertyName("flashSaleProductPO")] object? FlashSaleProductPO
 ) : IPartNetDTO
 {
-        public DistributorPartDbDTO ToDistributorPartDbDTO()
+        public DistributorPartDbDTO TryToDistributorPartDbDTO()
         {
                 return new DistributorPartDbDTO()
                 {

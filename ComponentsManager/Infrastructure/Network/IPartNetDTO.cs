@@ -4,5 +4,5 @@ namespace ComponentsManager.Infrastructure.Network;
 
 public interface IPartNetDTO
 {
-    public DistributorPartDbDTO ToDistributorPartDbDTO();
+    public DistributorPartDbDTO TryToDistributorPartDbDTO();
 }
