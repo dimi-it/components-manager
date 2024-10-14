@@ -1,4 +1,5 @@
-﻿using ComponentsManager.Infrastructure.Databases.DTOs;
+﻿using ComponentsManager.Infrastructure.Databases.Const;
+using ComponentsManager.Infrastructure.Databases.DTOs;
 using MongoDB.Driver;
 
 namespace ComponentsManager.Infrastructure.Databases.Repositories;
@@ -26,14 +27,20 @@ public class DistributorPartDbRepository: BaseDbRepository<DistributorPartDbDTO>
 
     public async Task<DistributorPartDbDTO?> GetByVendorProductCodeAsync(string vendorProductCode)
     {
-        IAsyncCursor<DistributorPartDbDTO> result = await Collection.FindAsync(t => t.VendorProductCode == vendorProductCode);
+        IAsyncCursor<DistributorPartDbDTO> result = await Collection.FindAsync(part => part.VendorProductCode == vendorProductCode);
         return await result.FirstOrDefaultAsync();
     }
     
     public async Task<DistributorPartDbDTO?> GetByManufacturerProductCodeAsync(string manufacturerProductCode)
     {
-        IAsyncCursor<DistributorPartDbDTO> result = await Collection.FindAsync(t => t.ManufacturerProductCode == manufacturerProductCode);
+        IAsyncCursor<DistributorPartDbDTO> result = await Collection.FindAsync(part => part.ManufacturerProductCode == manufacturerProductCode);
         return await result.FirstOrDefaultAsync();
 
+    }
+    
+    public async Task<List<DistributorPartDbDTO>> GetAllByTopCategoryAsync(TopLevelCategory topLevelCategory)
+    {
+        IAsyncCursor<DistributorPartDbDTO> result = await Collection.FindAsync(part => part.CategoryDto.TopLevelCategory == topLevelCategory);
+        return result.ToList();
     }
 }
