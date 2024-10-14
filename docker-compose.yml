@@ -4,3 +4,9 @@
     build:
       context: .
       dockerfile: ComponentsManager/Dockerfile
+
+  console:
+    image: console
+    build:
+      context: .
+      dockerfile: Console/Dockerfile
