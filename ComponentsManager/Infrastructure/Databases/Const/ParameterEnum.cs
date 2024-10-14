@@ -24,5 +24,8 @@ public enum ParameterEnum
     Capacitance,
 
     Power,
+    
+    RippleCurrent,
+    ESR,
 
 }

@@ -22,6 +22,8 @@ public static class LCSCParameterConversionMap
         { "L", ParameterEnum.Lenght }, 
         { "Lead Spacing", ParameterEnum.LeadSpacing }, 
         { "Lifetime @ Temp", ParameterEnum.LifetimeTemperature }, 
+        { "Ripple Current", ParameterEnum.RippleCurrent},
+        { "Equivalent Series Resistance(ESR)", ParameterEnum.ESR},
     };
 
     public static ParameterEnum TryParseParameter(string parameterName)
