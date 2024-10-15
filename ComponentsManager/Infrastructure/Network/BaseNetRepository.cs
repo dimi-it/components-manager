@@ -1,4 +1,4 @@
-﻿using ComponentsManager.Infrastructure.Databases.DTOs;
+﻿using DBManager.DTOs;
 
 namespace ComponentsManager.Infrastructure.Network;
 

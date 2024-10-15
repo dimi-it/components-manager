@@ -1,5 +1,5 @@
-﻿using ComponentsManager.Infrastructure.Databases.Const;
-using ComponentsManager.Infrastructure.Databases.DTOs;
+﻿using DBManager.Const;
+using DBManager.DTOs;
 
 namespace ComponentsManager.Infrastructure.Network.LCSC.Maps;
 //Two level way conversion to be implemented(Dictionary<Type<string, string>, Enum>)

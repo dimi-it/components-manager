@@ -1,5 +1,4 @@
-﻿using ComponentsManager.Infrastructure.Databases.Const;
-using ComponentsManager.Infrastructure.Databases.DTOs;
+﻿using DBManager.Const;
 
 namespace ComponentsManager.Infrastructure.Network.LCSC.Maps;
 

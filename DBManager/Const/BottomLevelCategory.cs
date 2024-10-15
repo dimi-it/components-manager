@@ -1,4 +1,4 @@
-﻿namespace ComponentsManager.Infrastructure.Databases.Const;
+﻿namespace DBManager.Const;
 
 public enum BottomLevelCategory
 {

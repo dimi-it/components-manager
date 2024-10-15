@@ -1,7 +1,7 @@
-﻿using ComponentsManager.Infrastructure.Databases.DTOs;
+﻿using DBManager.DTOs;
 using MongoDB.Driver;
 
-namespace ComponentsManager.Infrastructure.Databases.Repositories;
+namespace DBManager.Repositories;
 
 public class BaseDbRepository<T>: IDbRepository<T> where T: class, IDbEntity
 {

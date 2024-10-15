@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 
-namespace ComponentsManager.Infrastructure.Databases.Repositories;
+namespace DBManager.Repositories;
 
 public class MongoConnection
 {

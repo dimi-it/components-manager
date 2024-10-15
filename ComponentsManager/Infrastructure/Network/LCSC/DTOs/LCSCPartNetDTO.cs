@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
-using ComponentsManager.Infrastructure.Databases.Const;
-using ComponentsManager.Infrastructure.Databases.DTOs;
 using ComponentsManager.Infrastructure.Network.LCSC.Maps;
+using DBManager.Const;
+using DBManager.DTOs;
 
 namespace ComponentsManager.Infrastructure.Network.LCSC.DTOs;
 
@@ -66,7 +66,7 @@ public record LCSCPartNetDTO(
                         ManufacturerProductCode = ProductModel,
                         Manufacturer = BrandNameEn,
                         VendorProductCode = ProductCode,
-                        Vendor = NetworkProvider.LCSC,
+                        // Vendor = NetworkProvider.LCSC,
                         CategoryDto = LCSCCategoryConversionMap.TryParseCategory(ParentCatalogName, CatalogName) 
                                    ?? throw new ArgumentNullException("Category", $"{ParentCatalogName} --> {CatalogName}"),
                         Parameters = ParseParameters(),

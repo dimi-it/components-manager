@@ -1,6 +1,6 @@
-﻿using ComponentsManager.Infrastructure.Databases.Const;
-using ComponentsManager.Infrastructure.Databases.DTOs;
-using ComponentsManager.Infrastructure.Databases.Repositories;
+﻿using DBManager.Const;
+using DBManager.DTOs;
+using DBManager.Repositories;
 using Spectre.Console;
 
 namespace ConsoleApp

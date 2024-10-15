@@ -1,8 +1,8 @@
-﻿using ComponentsManager.Infrastructure.Databases.Const;
-using ComponentsManager.Infrastructure.Databases.DTOs;
+﻿using DBManager.Const;
+using DBManager.DTOs;
 using MongoDB.Driver;
 
-namespace ComponentsManager.Infrastructure.Databases.Repositories;
+namespace DBManager.Repositories;
 
 public class DistributorPartDbRepository: BaseDbRepository<DistributorPartDbDTO>
 {

@@ -1,6 +1,6 @@
-﻿using ComponentsManager.Infrastructure.Databases.Const;
+﻿using DBManager.Const;
 
-namespace ComponentsManager.Infrastructure.Databases.DTOs;
+namespace DBManager.DTOs;
 
 public class CategoryDTO
 {

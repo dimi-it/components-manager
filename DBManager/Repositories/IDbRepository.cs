@@ -1,6 +1,6 @@
-﻿using ComponentsManager.Infrastructure.Databases.DTOs;
+﻿using DBManager.DTOs;
 
-namespace ComponentsManager.Infrastructure.Databases.Repositories;
+namespace DBManager.Repositories;
 
 public interface IDbRepository<T> where T: IDbEntity
 {
