@@ -3,7 +3,7 @@ using MongoDB.Driver;
 
 namespace DBManager.Repositories;
 
-public class BaseDbRepository<T>: IDbRepository<T> where T: class, IDbEntity
+public class BaseDbRepository<T>: IDbRepository<T> where T: IDbEntity
 {
     protected IMongoCollection<T> Collection { get; private init; }
     
@@ -12,16 +12,16 @@ public class BaseDbRepository<T>: IDbRepository<T> where T: class, IDbEntity
         Collection = mongoConnection.Db.GetCollection<T>(collectionName);
     }
     
-    public async Task<List<T>> GetAllAsync()
+    public async Task<IEnumerable<T>> GetAllAsync()
     {
         IAsyncCursor<T> result = await Collection.FindAsync(_ => true);
-        return result.ToList();
+        return result.ToEnumerable();
     }
 
     public async Task<T?> GetByIdAsync(string id)
     {
         IAsyncCursor<T> result = await Collection.FindAsync(t => t.Id == id);
-        return await result.FirstOrDefaultAsync();
+        return await result.SingleOrDefaultAsync();
 
     }
 
