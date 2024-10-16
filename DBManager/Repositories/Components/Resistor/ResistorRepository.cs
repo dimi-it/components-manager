@@ -8,12 +8,12 @@ public class ResistorRepository<T>: ComponentsRepository<T>, IResistorRepository
     {
     }
 
-    public Task<IEnumerable<T>> GetByFootprintAsync(string footprint)
+    public async Task<IEnumerable<T>> GetByFootprintAsync(string footprint)
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<T>> GetByResistanceAsync(string footprint)
+    public async Task<IEnumerable<T>> GetByResistanceAsync(string footprint)
     {
         throw new NotImplementedException();
     }
