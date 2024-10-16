@@ -2,8 +2,8 @@
 
 public class ComponentParameter<T> : IComponentParameter<T> where T: IConvertible
 {
-    public T Value { get; private init; }
-    public string ValueString { get; private init; }
+    public T Value { get; }
+    public string ValueString { get; }
 
     public ComponentParameter(T value, string? valueString = null)
     {
