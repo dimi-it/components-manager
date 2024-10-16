@@ -13,22 +13,23 @@ namespace ConsoleApp
         
         public static async Task Main()
         {
-            _repository = new DistributorPartDbRepository(new MongoConnection(connectionString, dbName));
-                
-            List<int> categories = ((int[])Enum.GetValues(typeof(TopLevelCategory))).ToList();
-            categories.Remove(0);
-            while (true)
-            {
-                TopLevelCategory category = (TopLevelCategory)DisplayCategoryChoices<TopLevelCategory>(categories);
-                AnsiConsole.MarkupLine($"[bold]{category.ToString()}[/]");
-                string footprint = await DisplayFootprintChoices(category);
-                if (footprint.Equals("Back"))
-                {
-                    continue;
-                }
-
-                string result = await DisplayComponentsChoices(category, footprint);
-            }
+            await Tests.Run1(connectionString, dbName);
+            // _repository = new DistributorPartDbRepository(new MongoConnection(connectionString, dbName));
+            //     
+            // List<int> categories = ((int[])Enum.GetValues(typeof(TopLevelCategory))).ToList();
+            // categories.Remove(0);
+            // while (true)
+            // {
+            //     TopLevelCategory category = (TopLevelCategory)DisplayCategoryChoices<TopLevelCategory>(categories);
+            //     AnsiConsole.MarkupLine($"[bold]{category.ToString()}[/]");
+            //     string footprint = await DisplayFootprintChoices(category);
+            //     if (footprint.Equals("Back"))
+            //     {
+            //         continue;
+            //     }
+            //
+            //     string result = await DisplayComponentsChoices(category, footprint);
+            // }
         }
 
         private static int DisplayCategoryChoices<T>(IEnumerable<int> categories)

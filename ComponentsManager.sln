@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBManager", "DBManager\DBManager.csproj", "{1B4CBC0C-D153-4824-A213-7CA282EC73F2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistributorManager", "DistributorManager\DistributorManager.csproj", "{1ECBD5AA-B3F4-4190-B208-90A857373308}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,5 +31,12 @@ Global
 		{1B4CBC0C-D153-4824-A213-7CA282EC73F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B4CBC0C-D153-4824-A213-7CA282EC73F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B4CBC0C-D153-4824-A213-7CA282EC73F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ECBD5AA-B3F4-4190-B208-90A857373308}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ECBD5AA-B3F4-4190-B208-90A857373308}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ECBD5AA-B3F4-4190-B208-90A857373308}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ECBD5AA-B3F4-4190-B208-90A857373308}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1ECBD5AA-B3F4-4190-B208-90A857373308} = {E07E0249-90A8-4177-AC2B-8FD1609BA185}
 	EndGlobalSection
 EndGlobal
