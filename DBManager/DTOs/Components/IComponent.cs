@@ -2,10 +2,12 @@
 
 public interface IComponent: IDbEntity
 {
-    string Name { get; init; }
-    string? Description { get; init; }
-    string? ManufacturerProductCode { get; init; }
-    string? Manufacturer { get; init; }
-    string? VendorProductCode { get; init; }
-    string? Vendor { get; init; }
+    string Name { get; }
+    string? Description { get; }
+    //unique
+    string? ManufacturerProductCode { get; }
+    string? Manufacturer { get; }
+    //unique
+    string? VendorProductCode { get; }
+    string? Vendor { get; }
 }
