@@ -12,6 +12,10 @@ public class ComponentsRepository<T>: BaseDbRepository<T>, IComponentsRepository
 
     public override async Task CreateAsync(T component)
     {
+        if (component.Name is null)
+        {
+            throw new ArgumentNullException($"{nameof(component)}", "A component with Name null cannot be stored.");
+        }
         if (component.ManufacturerProductCode is not null)
         {
             T? result = await GetByManufacturerProductCodeAsync(component.ManufacturerProductCode);
