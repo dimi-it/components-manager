@@ -23,4 +23,6 @@ public class Component : IComponent
     //Unique
     public string? VendorProductCode { get; init; }
     public string? Vendor { get; init; }
+    public string? DatasheetUrl { get; init; }
+    public List<string>? ImagesUrl { get; init; }
 }

@@ -10,4 +10,6 @@ public interface IComponent: IDbEntity
     //unique
     string? VendorProductCode { get; }
     string? Vendor { get; }
+    public string? DatasheetUrl { get; }
+    public List<string>? ImagesUrl { get; }
 }
