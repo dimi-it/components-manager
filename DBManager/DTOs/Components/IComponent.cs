@@ -2,7 +2,7 @@
 
 public interface IComponent: IDbEntity
 {
-    string Name { get; }
+    string? Name { get; }
     string? Description { get; }
     //unique
     string? ManufacturerProductCode { get; }

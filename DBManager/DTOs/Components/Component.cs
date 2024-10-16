@@ -8,7 +8,14 @@ public class Component : IComponent
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string Id { get; init; } = string.Empty;
-    public required string Name { get; init; }
+    
+    //Nullable but cannot be stored with a Name null
+    public string? Name
+    {
+        get => _name;
+        init => _name = value;
+    }
+    protected string? _name;
     public string? Description { get; init; }
     //Unique
     public string? ManufacturerProductCode { get; init; }
