@@ -6,7 +6,7 @@ namespace DBManager.DTOs.Components.Resistors;
 
 public class Resistor_SMD: Component, IResistor
 {
-    public required string Footprint { get; init; }
+    public required ComponentParameter<string> Footprint { get; init; }
     public required ComponentParameter<double> Resistance { get; init; }
     public required ComponentParameter<string> Tolerance { get; init; }     
     public ComponentParameter<double>? Power { get; init; }                      

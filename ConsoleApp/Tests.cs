@@ -16,7 +16,7 @@ public static class Tests
         {
             Vendor = "Io",
             VendorProductCode = "code2",
-            Footprint = "0805",
+            Footprint = new ComponentParameter<string>("0805"),
             Resistance = new ComponentParameter<double>(1000.0, "1kΩ"),
             Tolerance = new ComponentParameter<string>("+=1")
         };
