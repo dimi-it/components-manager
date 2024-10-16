@@ -2,6 +2,7 @@
 
 public interface IComponentParameter<T> where T: IConvertible
 {
-    public T Value { get; init; }
+    T Value { get; }
+    string ValueString { get; }
     string ToString();
 }
