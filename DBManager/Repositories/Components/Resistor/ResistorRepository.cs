@@ -8,12 +8,26 @@ public class ResistorRepository<T>: ComponentsRepository<T>, IResistorRepository
     {
     }
 
-    public async Task<IEnumerable<T>> GetByFootprintAsync(string footprint)
+    public override async Task CreateAsync(T resistor)
+    {
+        if (resistor.Name is null)
+        {
+            resistor.SetDefaultName();
+        }
+        await base.CreateAsync(resistor);
+    }
+
+    public Task<IEnumerable<T>> GetByFootprintAsync(string footprint)
     {
         throw new NotImplementedException();
     }
 
-    public async Task<IEnumerable<T>> GetByResistanceAsync(string footprint)
+    public Task<IEnumerable<T>> GetByResistanceAsync(double resistance)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<IEnumerable<T>> GetByToleranceAsync(string tolerance)
     {
         throw new NotImplementedException();
     }
