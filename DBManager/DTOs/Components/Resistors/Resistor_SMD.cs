@@ -1,8 +1,4 @@
-﻿using DBManager.Repositories;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-
-namespace DBManager.DTOs.Components.Resistors;
+﻿namespace DBManager.DTOs.Components.Resistors;
 
 public class Resistor_SMD: Component, IResistor
 {

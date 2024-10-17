@@ -1,5 +1,4 @@
-﻿using DBManager.DTOs.Components;
-using DBManager.DTOs.Components.Resistors;
+﻿using DBManager.DTOs.Components.Resistors;
 
 namespace DBManager.Repositories.Components.Resistor;
 
