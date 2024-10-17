@@ -14,9 +14,18 @@ public class Resistor_SMD: Component, IResistor
     public ComponentParameter<string>? Type { get; init; }                       
     public ComponentParameter<string>? OverloadVoltage { get; init; }                        
     public ComponentParameter<string>? OperatingTemperatureRange { get; init; }
+    
+    public Resistor_SMD(Component? baseComponent = null)
+    {
+        //initialize the base component parameters, if a base component is provided
+        if (baseComponent != null)
+        {
+            base.InitByInstance(baseComponent); 
+        }
+    }
 
     public void SetDefaultName()
     {
-        _name = $"Resistor SMD {Footprint} {Resistance} {Tolerance}";
+        SetName($"Resistor SMD {Footprint} {Resistance} {Tolerance}");
     }
 }

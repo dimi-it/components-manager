@@ -12,15 +12,25 @@ public static class Tests
     {
         Console.WriteLine("RUN 1");
         Resistor_SMDRepository repository = new Resistor_SMDRepository(new MongoConnection(connectionString, dbName));
+        Component c = new Component()
+        {
+            Name = "resWOo",
+            VendorProductCode = "15",
+            Vendor = "LCSC"
+        };
         Resistor_SMD r1 = new Resistor_SMD()
         {
-            Vendor = "Io",
-            VendorProductCode = "code2",
             Footprint = new ComponentParameter<string>("0805"),
-            Resistance = new ComponentParameter<double>(1000.0, "1kΩ"),
-            Tolerance = new ComponentParameter<string>("+=1")
+            Resistance = new ComponentParameter<double>(1000d, "1k"),
+            Tolerance = new ComponentParameter<string>("+-1"),
         };
-        await repository.CreateAsync(r1);
+        Resistor_SMD r2 = new Resistor_SMD(c)
+        {
+            Footprint = new ComponentParameter<string>("080225"),
+            Resistance = new ComponentParameter<double>(1000d, "1k"),
+            Tolerance = new ComponentParameter<string>("+-1"),
+        };
+        await repository.CreateAsync(r2);
         Console.WriteLine(JsonSerializer.Serialize((await repository.GetAllAsync()).ToList()));
     }
 }
