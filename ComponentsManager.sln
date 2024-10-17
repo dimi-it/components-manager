@@ -1,7 +1,5 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentsManager", "ComponentsManager\ComponentsManager.csproj", "{DE956C17-A0C4-442C-B40D-AF1D025A355B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E07E0249-90A8-4177-AC2B-8FD1609BA185}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DE956C17-A0C4-442C-B40D-AF1D025A355B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE956C17-A0C4-442C-B40D-AF1D025A355B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DE956C17-A0C4-442C-B40D-AF1D025A355B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DE956C17-A0C4-442C-B40D-AF1D025A355B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3B07E2E4-4C9B-494D-8A6D-02128C951FB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3B07E2E4-4C9B-494D-8A6D-02128C951FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B07E2E4-4C9B-494D-8A6D-02128C951FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU

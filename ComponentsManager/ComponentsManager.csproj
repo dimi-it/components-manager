@@ -23,6 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Infrastructure\Databases\Docker\" />
       <Folder Include="Infrastructure\Network\" />
     </ItemGroup>
 
