@@ -1,11 +1,17 @@
 ﻿using System.Net.Http.Headers;
 using System.Text.Json;
+using DBManager.DTOs.Components;
+using DBManager.DTOs.Components.Resistors;
+using DBManager.Repositories;
+using DBManager.Repositories.Components.Resistor;
 using DistributorManager.DTOs.LCSC;
 
 namespace DistributorManager.Repositories.LCSC;
 
-public class LCSCRepository : BaseDistributorRepository<LCSCPartDTO>
+public class LCSCRepository : IDistributorRepository<LCSCPartDTO>
 {
+    public static string Vendor => "LCSC";
+    
     private readonly string _baseAddress = "https://wmsc.lcsc.com";
     private HttpClient _httpClient;
 
@@ -18,14 +24,32 @@ public class LCSCRepository : BaseDistributorRepository<LCSCPartDTO>
         };
         _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         _httpClient.DefaultRequestHeaders.Add("User-Agent","Other");
-        IDistributorRepository<LCSCPartDTO> f = this;
     }
 
-    public override async Task<LCSCPartDTO?> GetPartNetAsync(string productCode)
+    public async Task<LCSCPartDTO?> GetPartAsync(string productCode)
     {
         await using Stream stream = await _httpClient
             .GetStreamAsync($"ftps/wm/product/detail?productCode={productCode}");
         LCSCRootDTO? lcscRootNetDto = await JsonSerializer.DeserializeAsync<LCSCRootDTO>(stream);
         return lcscRootNetDto?.Result;
+    }
+
+    public IComponent GetComponent(LCSCPartDTO part)
+    {
+        return LCSCConverter.GetComponent(part);
+    }
+
+    public async Task InsertPartIntoDb(MongoConnection mongoConnection, LCSCPartDTO part)
+    {
+        IComponent component = GetComponent(part);
+        
+        switch (component)
+        {
+            case Resistor_SMD resistorSmd:
+                await new Resistor_SMDRepository(mongoConnection).CreateAsync(resistorSmd);
+                break;
+            default:
+                throw new NotImplementedException($"{part.ParentCatalogName} -> {part.CatalogName} DB not yet implemented!");
+        }
     }
 }
