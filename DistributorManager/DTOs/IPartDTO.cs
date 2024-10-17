@@ -1,8 +1,8 @@
 ﻿using DBManager.DTOs;
 
-namespace ComponentsManager.Infrastructure.Network;
+namespace DistributorManager.DTOs;
 
-public interface IPartNetDTO
+public interface IPartDTO
 {
     public DistributorPartDbDTO TryToDistributorPartDbDTO();
 }

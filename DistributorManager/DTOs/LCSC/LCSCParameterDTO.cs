@@ -1,9 +1,9 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ComponentsManager.Infrastructure.Network.LCSC.DTOs;
+namespace DistributorManager.DTOs.LCSC;
 
 [method: JsonConstructor]
-public record LCSCParameterNetDTO(
+public record LCSCParameterDTO(
     [property: JsonPropertyName("paramCode")] string ParamCode,
     [property: JsonPropertyName("paramName")] string ParamName,
     [property: JsonPropertyName("paramNameEn")] string ParamNameEn,

@@ -1,7 +1,7 @@
 ﻿using DBManager.Const;
 using DBManager.DTOs;
 
-namespace ComponentsManager.Infrastructure.Network.LCSC.Maps;
+namespace DistributorManager.LCSC.Maps;
 //Two level way conversion to be implemented(Dictionary<Type<string, string>, Enum>)
 //or
 //Category TREE classes

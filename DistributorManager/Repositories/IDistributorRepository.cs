@@ -1,8 +1,9 @@
 ﻿using DBManager.DTOs;
+using DistributorManager.DTOs;
 
-namespace ComponentsManager.Infrastructure.Network;
+namespace DistributorManager.Repositories;
 
-public interface INetRepository<T> where T: IPartNetDTO
+public interface IDistributorRepository<T> where T: IPartDTO
 {
     Task<T?> GetPartNetAsync(string productCode);
     Task<DistributorPartDbDTO?> GetDistributorPartAsync(string productCode);

@@ -1,9 +1,9 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ComponentsManager.Infrastructure.Network.LCSC.DTOs;
+namespace DistributorManager.DTOs.LCSC;
 
 [method: JsonConstructor]
-public record LCSCStockNetDTO(
+public record LCSCStockDTO(
     [property: JsonPropertyName("total")] int Total,
     [property: JsonPropertyName("shipImmediately")] int ShipImmediately,
     [property: JsonPropertyName("ship3Days")] int Ship3Days

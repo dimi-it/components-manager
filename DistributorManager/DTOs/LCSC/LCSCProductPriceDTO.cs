@@ -1,9 +1,9 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ComponentsManager.Infrastructure.Network.LCSC.DTOs;
+namespace DistributorManager.DTOs.LCSC;
 
 [method: JsonConstructor]
-public record LCSCProductPriceNetDTO(
+public record LCSCProductPriceDTO(
     [property: JsonPropertyName("ladder")] int Ladder,
     [property: JsonPropertyName("productPrice")] string ProductPrice,
     [property: JsonPropertyName("usdPrice")] double UsdPrice,

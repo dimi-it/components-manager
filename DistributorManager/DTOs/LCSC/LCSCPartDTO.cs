@@ -1,12 +1,12 @@
 ﻿using System.Text.Json.Serialization;
-using ComponentsManager.Infrastructure.Network.LCSC.Maps;
 using DBManager.Const;
 using DBManager.DTOs;
+using DistributorManager.LCSC.Maps;
 
-namespace ComponentsManager.Infrastructure.Network.LCSC.DTOs;
+namespace DistributorManager.DTOs.LCSC;
 
 [method: JsonConstructor]
-public record LCSCPartNetDTO(
+public record LCSCPartDTO(
         [property: JsonPropertyName("productId")] int ProductId,
         [property: JsonPropertyName("productCode")] string ProductCode,
         [property: JsonPropertyName("productModel")] string ProductModel,
@@ -33,14 +33,14 @@ public record LCSCPartNetDTO(
         [property: JsonPropertyName("stockSz")] int StockSz,
         [property: JsonPropertyName("stockJs")] int StockJs,
         [property: JsonPropertyName("wmStockHk")] int WmStockHk,
-        [property: JsonPropertyName("domesticStockVO")] LCSCStockNetDTO DomesticStock,
-        [property: JsonPropertyName("overseasStockVO")] LCSCStockNetDTO OverseasStock,
-        [property: JsonPropertyName("productPriceList")] IReadOnlyList<LCSCProductPriceNetDTO> ProductPriceList,
+        [property: JsonPropertyName("domesticStockVO")] LCSCStockDTO DomesticStock,
+        [property: JsonPropertyName("overseasStockVO")] LCSCStockDTO OverseasStock,
+        [property: JsonPropertyName("productPriceList")] IReadOnlyList<LCSCProductPriceDTO> ProductPriceList,
         [property: JsonPropertyName("productImages")] IReadOnlyList<string> ProductImages,
         [property: JsonPropertyName("pdfUrl")] string? PdfUrl,
         [property: JsonPropertyName("productDescEn")] string? ProductDescEn,
         [property: JsonPropertyName("productIntroEn")] string ProductIntroEn,
-        [property: JsonPropertyName("paramVOList")] IReadOnlyList<LCSCParameterNetDTO>? ParamList,
+        [property: JsonPropertyName("paramVOList")] IReadOnlyList<LCSCParameterDTO>? ParamList,
         [property: JsonPropertyName("productArrange")] string ProductArrange,
         [property: JsonPropertyName("productWeight")] double ProductWeight,
         [property: JsonPropertyName("foreignWeight")] object? ForeignWeight,
@@ -57,7 +57,7 @@ public record LCSCPartNetDTO(
         [property: JsonPropertyName("weight")] double Weight,
         [property: JsonPropertyName("hasThirdPartyStock")] bool HasThirdPartyStock,
         [property: JsonPropertyName("flashSaleProductPO")] object? FlashSaleProductPO
-) : IPartNetDTO
+) : IPartDTO
 {
         public DistributorPartDbDTO TryToDistributorPartDbDTO()
         {
@@ -80,7 +80,7 @@ public record LCSCPartNetDTO(
                 List<ParameterDTO> parameters = new List<ParameterDTO>();
                 if (ParamList != null)
                 {
-                        foreach (LCSCParameterNetDTO lcscParameter in ParamList)
+                        foreach (LCSCParameterDTO lcscParameter in ParamList)
                         {
                                 ParameterDTO parameterDto = TryParseParameter(lcscParameter)
                                                             ?? throw new ArgumentNullException("Parameter",
@@ -100,7 +100,7 @@ public record LCSCPartNetDTO(
                 return parameters;
         }
 
-        public ParameterDTO? TryParseParameter(LCSCParameterNetDTO lcscParameter)
+        public ParameterDTO? TryParseParameter(LCSCParameterDTO lcscParameter)
         {
                 ParameterEnum parameterName = LCSCParameterConversionMap.TryParseParameter(lcscParameter.ParamNameEn);
                 if(parameterName != ParameterEnum.None)

@@ -1,6 +1,6 @@
 ﻿using DBManager.Const;
 
-namespace ComponentsManager.Infrastructure.Network.LCSC.Maps;
+namespace DistributorManager.LCSC.Maps;
 
 public static class LCSCParameterConversionMap
 {

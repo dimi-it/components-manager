@@ -37,6 +37,5 @@ Global
 		{1ECBD5AA-B3F4-4190-B208-90A857373308}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{1ECBD5AA-B3F4-4190-B208-90A857373308} = {E07E0249-90A8-4177-AC2B-8FD1609BA185}
 	EndGlobalSection
 EndGlobal

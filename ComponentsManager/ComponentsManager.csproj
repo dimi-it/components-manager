@@ -22,4 +22,8 @@
       <ProjectReference Include="..\DBManager\DBManager.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Infrastructure\Network\" />
+    </ItemGroup>
+
 </Project>

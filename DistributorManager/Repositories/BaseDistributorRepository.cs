@@ -1,8 +1,9 @@
 ﻿using DBManager.DTOs;
+using DistributorManager.DTOs;
 
-namespace ComponentsManager.Infrastructure.Network;
+namespace DistributorManager.Repositories;
 
-public abstract class BaseNetRepository<T>: INetRepository<T> where T: IPartNetDTO
+public abstract class BaseDistributorRepository<T>: IDistributorRepository<T> where T: IPartDTO
 {
     public abstract Task<T?> GetPartNetAsync(string productCode);
 

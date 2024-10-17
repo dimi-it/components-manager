@@ -1,10 +1,10 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ComponentsManager.Infrastructure.Network.LCSC.DTOs;
+namespace DistributorManager.DTOs.LCSC;
 
 [method: JsonConstructor]
-public record LCSCRootNetDTO(
+public record LCSCRootDTO(
     [property: JsonPropertyName("code")] int Code,
     [property: JsonPropertyName("msg")] string? Msg,
-    [property: JsonPropertyName("result")] LCSCPartNetDTO? Result
+    [property: JsonPropertyName("result")] LCSCPartDTO? Result
 );
