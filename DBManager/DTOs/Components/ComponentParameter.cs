@@ -11,6 +11,11 @@ public class ComponentParameter<T> : IComponentParameter<T> where T: IConvertibl
         ValueString = valueString ?? value.ToString()!;
     }
 
+    public ComponentParameter<TResult> Cast<TResult>() where TResult: IConvertible
+    {
+        return new ComponentParameter<TResult>((TResult)(object)Value, ValueString);
+    }
+
     public override string ToString()
     {
         return ValueString;
