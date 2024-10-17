@@ -1,5 +1,4 @@
-﻿using DBManager.DTOs;
-using DBManager.DTOs.Components;
+﻿using DBManager.DTOs.Components;
 using DBManager.Repositories;
 using DistributorManager.DTOs;
 

@@ -1,4 +1,4 @@
-﻿namespace DistributorManager.Repositories.LCSC;
+﻿namespace DistributorManager.Converters.LCSC;
 
 public static class LCSCParameter
 {

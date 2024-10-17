@@ -1,8 +1,9 @@
 ﻿using DBManager.DTOs.Components;
 using DBManager.DTOs.Components.Resistors;
 using DistributorManager.DTOs.LCSC;
+using DistributorManager.Repositories.LCSC;
 
-namespace DistributorManager.Repositories.LCSC;
+namespace DistributorManager.Converters.LCSC;
 
 public static class LCSCConverter
 {
@@ -24,16 +25,18 @@ public static class LCSCConverter
     
     private static IComponent GetFullComponent(LCSCPartDTO part, Component baseComponent)
     {
-        //Resistor
-        if (part.ParentCatalogId == 308)
+        switch (part.ParentCatalogId)
         {
-            //SMD
-            if (part.CatalogId == 439)
-            {
-                return GetResistor_SMD(part, baseComponent);
-            }
+            //Resistor
+            case 308:
+                switch (part.CatalogId)
+                {
+                    //SMD
+                    case 439:
+                        return GetResistor_SMD(part, baseComponent);
+                }
+                break;
         }
-
         throw new NotImplementedException($"{part.ParentCatalogName} -> {part.CatalogName} converter not yet implemented!");
     }
     

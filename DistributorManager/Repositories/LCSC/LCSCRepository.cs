@@ -4,6 +4,8 @@ using DBManager.DTOs.Components;
 using DBManager.DTOs.Components.Resistors;
 using DBManager.Repositories;
 using DBManager.Repositories.Components.Resistor;
+using DistributorManager.Converters;
+using DistributorManager.Converters.LCSC;
 using DistributorManager.DTOs.LCSC;
 
 namespace DistributorManager.Repositories.LCSC;

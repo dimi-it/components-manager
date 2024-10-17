@@ -10,8 +10,4 @@
       <ProjectReference Include="..\DBManager\DBManager.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="LCSC\DTOs\" />
-    </ItemGroup>
-
 </Project>
