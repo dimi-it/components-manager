@@ -9,5 +9,7 @@ public static class LCSCParameter
     public static readonly string Type = "Type";
     public static readonly string OverloadVoltage = "Overload Voltage (Max)";
     public static readonly string OperatingTemperature = "Operating Temperature Range";
+    public static readonly string RatedVoltage = "Voltage Rated";
+    public static readonly string Capacitance = "Capacitance";
 
 }
