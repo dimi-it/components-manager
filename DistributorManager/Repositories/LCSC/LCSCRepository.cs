@@ -55,6 +55,12 @@ public class LCSCRepository : IDistributorRepository<LCSCPartDTO>
             case Capacitor_MLCC_SMD capacitorMlccSmd:
                 await new Capacitor_MLCC_SMDRepository(mongoConnection).CreateAsync(capacitorMlccSmd);
                 break;
+            case Capacitor_Electrolytic_SMD capacitorElectrolyticSmd:
+                await new Capacitor_Electrolytic_SMDRepository(mongoConnection).CreateAsync(capacitorElectrolyticSmd);
+                break;
+            case Capacitor_Electrolytic_Leaded capacitorElectrolyticLeaded:
+                await new Capacitor_Electrolytic_LeadedRepository(mongoConnection).CreateAsync(capacitorElectrolyticLeaded);
+                break;
             default:
                 throw new NotImplementedException($"{part.ParentCatalogName} -> {part.CatalogName} DB not yet implemented!");
         }
