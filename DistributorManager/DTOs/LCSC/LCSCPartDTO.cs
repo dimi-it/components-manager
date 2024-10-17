@@ -23,7 +23,7 @@ public record LCSCPartDTO(
         [property: JsonPropertyName("brandNameEn")]
         string BrandNameEn,
         [property: JsonPropertyName("encapStandard")]
-        string EncapStandard,
+        string? EncapStandard,
         [property: JsonPropertyName("split")] int Split,
         [property: JsonPropertyName("productUnit")]
         string ProductUnit,
