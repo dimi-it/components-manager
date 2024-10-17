@@ -3,6 +3,9 @@ using DBManager.DTOs.Components;
 using DBManager.DTOs.Components.Resistors;
 using DBManager.Repositories;
 using DBManager.Repositories.Components.Resistor;
+using DistributorManager.DTOs;
+using DistributorManager.DTOs.LCSC;
+using DistributorManager.Repositories.LCSC;
 
 namespace ConsoleApp;
 
@@ -30,7 +33,32 @@ public static class Tests
             Resistance = new ComponentParameter<double>(1000d, "1k"),
             Tolerance = new ComponentParameter<string>("+-1"),
         };
-        await repository.CreateAsync(r2);
+        IComponent r3 = TestInheritance();
+        await repository.CreateAsync((Resistor_SMD)r3);
         Console.WriteLine(JsonSerializer.Serialize((await repository.GetAllAsync()).ToList()));
+    }
+
+    private static IComponent TestInheritance()
+    {
+        Resistor_SMD r1 = new Resistor_SMD()
+        {
+            Footprint = new ComponentParameter<string>("Working0805"),
+            Resistance = new ComponentParameter<double>(1000d, "1k"),
+            Tolerance = new ComponentParameter<string>("+-1"),
+        };
+        return r1;
+    }
+
+    public static async Task Run2(string connectionString, string dbName)
+    {
+        string code = "C22548";
+        LCSCRepository lcscRepository = new LCSCRepository();
+        MongoConnection mongoConnection = new MongoConnection(connectionString, dbName);
+        
+        LCSCPartDTO? part = await lcscRepository.GetPartAsync(code);
+        if (part is not null)
+        {
+            await lcscRepository.InsertPartIntoDb(mongoConnection, part);
+        }
     }
 }
