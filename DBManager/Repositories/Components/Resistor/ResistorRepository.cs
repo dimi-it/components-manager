@@ -1,4 +1,6 @@
-﻿using DBManager.DTOs.Components.Resistors;
+﻿using DBManager.Const;
+using DBManager.DTOs.Components.Resistors;
+using MongoDB.Driver;
 
 namespace DBManager.Repositories.Components.Resistor;
 
@@ -17,18 +19,21 @@ public class ResistorRepository<T>: ComponentsRepository<T>, IResistorRepository
         await base.CreateAsync(resistor);
     }
 
-    public Task<IEnumerable<T>> GetByFootprintAsync(string footprint)
+    public async Task<IEnumerable<T>> GetByFootprintAsync(string footprint)
     {
-        throw new NotImplementedException();
+        IAsyncCursor<T> result = await Collection.FindAsync(resistor => resistor.Footprint.Value == footprint);
+        return result.ToEnumerable();
     }
 
-    public Task<IEnumerable<T>> GetByResistanceAsync(double resistance)
+    public async Task<IEnumerable<T>> GetByResistanceAsync(double resistance)
     {
-        throw new NotImplementedException();
+        IAsyncCursor<T> result = await Collection.FindAsync(resistor => Math.Abs(resistor.Resistance.Value - resistance) < DBConst.COMPARISION_TOLERANCE);
+        return result.ToEnumerable();
     }
 
-    public Task<IEnumerable<T>> GetByToleranceAsync(string tolerance)
+    public async Task<IEnumerable<T>> GetByToleranceAsync(string tolerance)
     {
-        throw new NotImplementedException();
+        IAsyncCursor<T> result = await Collection.FindAsync(resistor => resistor.Tolerance.Value == tolerance);
+        return result.ToEnumerable();
     }
 }

@@ -51,16 +51,19 @@ public class ComponentsRepository<T>: BaseDbRepository<T>, IComponentsRepository
 
     public async Task<IEnumerable<T>> GetByNameAsync(string name)
     {
-        throw new NotImplementedException();
+        IAsyncCursor<T> result = await Collection.FindAsync(component => component.Name == name);
+        return result.ToEnumerable();
     }
 
     public async Task<IEnumerable<T>> GetByManufacturerAsync(string manufacturer)
     {
-        throw new NotImplementedException();
+        IAsyncCursor<T> result = await Collection.FindAsync(component => component.Manufacturer == manufacturer);
+        return result.ToEnumerable();
     }
 
     public async Task<IEnumerable<T>> GetByVendorAsync(string vendor)
     {
-        throw new NotImplementedException();
+        IAsyncCursor<T> result = await Collection.FindAsync(component => component.Vendor == vendor);
+        return result.ToEnumerable();
     }
 }
