@@ -12,7 +12,7 @@ public class Resistor_SMD: Component, IResistor
     public ComponentParameter<double>? Power { get; init; }                      
     public ComponentParameter<string>? TemperatureCoefficient { get; init; }
     public ComponentParameter<string>? Type { get; init; }                       
-    public ComponentParameter<string>? OverloadVoltage { get; init; }                        
+    public ComponentParameter<double>? OverloadVoltage { get; init; }                        
     public ComponentParameter<string>? OperatingTemperatureRange { get; init; }
     
     public Resistor_SMD(Component? baseComponent = null)
