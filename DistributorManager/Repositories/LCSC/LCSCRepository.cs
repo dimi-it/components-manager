@@ -1,8 +1,10 @@
 ﻿using System.Net.Http.Headers;
 using System.Text.Json;
 using DBManager.DTOs.Components;
+using DBManager.DTOs.Components.Capacitors;
 using DBManager.DTOs.Components.Resistors;
 using DBManager.Repositories;
+using DBManager.Repositories.Components.Capacitor;
 using DBManager.Repositories.Components.Resistor;
 using DistributorManager.Converters;
 using DistributorManager.Converters.LCSC;
@@ -49,6 +51,9 @@ public class LCSCRepository : IDistributorRepository<LCSCPartDTO>
         {
             case Resistor_SMD resistorSmd:
                 await new Resistor_SMDRepository(mongoConnection).CreateAsync(resistorSmd);
+                break;
+            case Capacitor_MLCC_SMD capacitorMlccSmd:
+                await new Capacitor_MLCC_SMDRepository(mongoConnection).CreateAsync(capacitorMlccSmd);
                 break;
             default:
                 throw new NotImplementedException($"{part.ParentCatalogName} -> {part.CatalogName} DB not yet implemented!");

@@ -43,7 +43,7 @@ public static class LCSCConverter
                 {
                     //MLCC SMD
                     case 313:
-                        return GetResistor_SMD(part, baseComponent);
+                        return GetCapacitor_MLCC_SMD(part, baseComponent);
                 }
                 break;
         }
