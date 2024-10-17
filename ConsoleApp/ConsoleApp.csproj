@@ -20,7 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ComponentsManager\ComponentsManager.csproj" />
+      <ProjectReference Include="..\DistributorManager\DistributorManager.csproj" />
     </ItemGroup>
 
 </Project>
