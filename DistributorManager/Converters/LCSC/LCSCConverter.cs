@@ -158,7 +158,14 @@ public static class LCSCConverter
         {
             if (parameterDto.ParamValueEnForSearch is null or -1.0d)
             {
-                return new ComponentParameter<IConvertible>(parameterDto.ParamValueEn);
+                if (parameterDto.ParamValueEn.Equals("-"))
+                {
+                    return null;
+                }
+                else
+                {
+                    return new ComponentParameter<IConvertible>(parameterDto.ParamValueEn);
+                }
             }
             else
             {
