@@ -30,14 +30,14 @@ public class BaseDbRepository<T>: IDbRepository<T> where T: IDbEntity
         await Collection.InsertOneAsync(t);
     }
 
-    public async Task<bool> UpdateOneAsync(T t)
+    public virtual async Task<bool> UpdateOneAsync(T t)
     {
         FilterDefinition<T> filter = Builders<T>.Filter.Eq(nameof(t.Id), t.Id);
         ReplaceOneResult result = await Collection.ReplaceOneAsync(filter, t);
         return result.ModifiedCount > 0;
     }
 
-    public async Task<bool> DeleteOneAsync(T t)
+    public virtual async Task<bool> DeleteOneAsync(T t)
     {
         FilterDefinition<T> filter = Builders<T>.Filter.Eq(nameof(t.Id), t.Id);
         DeleteResult result = await Collection.DeleteOneAsync(filter);
