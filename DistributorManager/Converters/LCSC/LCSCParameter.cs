@@ -19,4 +19,15 @@ public static class LCSCParameter
     public static readonly string RippleCurrent = "Ripple Current";
     public static readonly string ESR = "Equivalent Series Resistance(ESR)";
     public static readonly string LeadSpacing = "Lead Spacing";
+    public static readonly string Inductance = "Inductance";
+    public static readonly string RatedCurrent = "Rated Current";
+    public static readonly string DCResistance = "DC Resistance (DCR)";
+    public static readonly string DCResistance2 = "DC Resistance";
+    public static readonly string SaturationCurrent = "Saturation Current (Isat)";
+    public static readonly string SaturationCurrent2 = "Current - Saturation (Isat)";
+    public static readonly string QFrequency = "Q @ Freq";
+    public static readonly string QFrequency2 = "Q @ Frequency";
+    public static readonly string FrequencySelfResonant = "Frequency - Self Resonant";
+    public static readonly string Ratings = "Ratings";
+    public static readonly string WireDiameter = "Wire Diameter";
 }

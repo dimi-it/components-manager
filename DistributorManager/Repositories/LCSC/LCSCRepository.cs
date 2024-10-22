@@ -2,9 +2,11 @@
 using System.Text.Json;
 using DBManager.DTOs.Components;
 using DBManager.DTOs.Components.Capacitors;
+using DBManager.DTOs.Components.Inductor;
 using DBManager.DTOs.Components.Resistors;
 using DBManager.Repositories;
 using DBManager.Repositories.Components.Capacitor;
+using DBManager.Repositories.Components.Inductor;
 using DBManager.Repositories.Components.Resistor;
 using DistributorManager.Converters;
 using DistributorManager.Converters.LCSC;
@@ -60,6 +62,12 @@ public class LCSCRepository : IDistributorRepository<LCSCPartDTO>
                 break;
             case Capacitor_Electrolytic_Leaded capacitorElectrolyticLeaded:
                 await new Capacitor_Electrolytic_LeadedRepository(mongoConnection).CreateAsync(capacitorElectrolyticLeaded);
+                break;
+            case InductorSMD inductorSmd:
+                await new InductorSMDRepository(mongoConnection).CreateAsync(inductorSmd);
+                break;
+            case InductorThroughHole inductorThroughHole:
+                await new InductorThroughHoleRepository(mongoConnection).CreateAsync(inductorThroughHole);
                 break;
             default:
                 throw new NotImplementedException($"{part.ParentCatalogName} -> {part.CatalogName} DB not yet implemented!");

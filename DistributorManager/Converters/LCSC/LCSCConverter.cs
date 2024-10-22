@@ -1,5 +1,6 @@
 ﻿using DBManager.DTOs.Components;
 using DBManager.DTOs.Components.Capacitors;
+using DBManager.DTOs.Components.Inductor;
 using DBManager.DTOs.Components.Resistors;
 using DistributorManager.DTOs.LCSC;
 using DistributorManager.Repositories.LCSC;
@@ -50,6 +51,21 @@ public static class LCSCConverter
                     //Electrolytic Leaded
                     case 315:
                         return GetCapacitor_Electrolytic_Leaded(part, baseComponent);
+                }
+                break;
+            //Inductor
+            case 316:
+                switch (part.CatalogId)
+                {
+                    //inductor SMD
+                    case 337:
+                        return GetInductorSMD(part, baseComponent);
+                    //POWER inductor
+                    case 544:
+                        return GetInductorSMD(part, baseComponent);
+                    //THROUGH HOLE inductor
+                    case 11245:
+                        return GetInductorThroughHole(part, baseComponent);
                 }
                 break;
         }
@@ -136,6 +152,54 @@ public static class LCSCConverter
             LifetimeTemperature = GetComponentParameter(lcscParameters, LCSCParameter.LifetimeTemperature)?.Cast<double>(),
         };
     }
+    
+    private static InductorSMD GetInductorSMD(LCSCPartDTO part, Component baseComponent)
+    {
+        Dictionary<string, LCSCParameterDTO> lcscParameters =
+            GetLCSCParametersDict(part.ParamList ?? throw NullParameterException(nameof(part.ParamList)));
+        return new InductorSMD(baseComponent)
+        {
+            Footprint = new ComponentParameter<string>(part.EncapStandard ?? throw MissingParameterException(nameof(InductorSMD.Footprint))),
+            Inductance = GetComponentParameter(lcscParameters, LCSCParameter.Inductance)?.Cast<double>()
+                          ?? throw MissingParameterException(nameof(InductorSMD.Inductance)),
+            Tolerance = GetComponentParameter(lcscParameters, LCSCParameter.Tolerance)?.Cast<string>()
+                        ?? throw MissingParameterException(nameof(InductorSMD.Tolerance)),
+            RatedCurrent = GetComponentParameter(lcscParameters, LCSCParameter.RatedCurrent)?.Cast<double>()
+                           ?? throw MissingParameterException(nameof(InductorSMD.RatedCurrent)),
+            DCResistance = GetComponentParameter(lcscParameters, LCSCParameter.DCResistance)?.Cast<double>()
+                           ?? throw MissingParameterException(nameof(InductorSMD.DCResistance)),
+            SaturationCurrent = GetComponentParameter(lcscParameters, LCSCParameter.SaturationCurrent)?.Cast<double>(),
+            QFrequency = GetComponentParameter(lcscParameters, LCSCParameter.QFrequency)?.Cast<double>(),
+            FrequencySelfResonant = GetComponentParameter(lcscParameters, LCSCParameter.FrequencySelfResonant)?.Cast<double>(),
+            Type = GetComponentParameter(lcscParameters, LCSCParameter.Type)?.Cast<string>(),
+            Ratings = GetComponentParameter(lcscParameters, LCSCParameter.Ratings)?.Cast<string>(),
+        };
+    }
+    
+    private static InductorThroughHole GetInductorThroughHole(LCSCPartDTO part, Component baseComponent)
+    {
+        Dictionary<string, LCSCParameterDTO> lcscParameters =
+            GetLCSCParametersDict(part.ParamList ?? throw NullParameterException(nameof(part.ParamList)));
+        return new InductorThroughHole(baseComponent)
+        {
+            Footprint = new ComponentParameter<string>(part.EncapStandard ?? throw MissingParameterException(nameof(InductorThroughHole.Footprint))),
+            Inductance = GetComponentParameter(lcscParameters, LCSCParameter.Inductance)?.Cast<double>()
+                         ?? throw MissingParameterException(nameof(InductorThroughHole.Inductance)),
+            Tolerance = GetComponentParameter(lcscParameters, LCSCParameter.Tolerance)?.Cast<string>()
+                        ?? throw MissingParameterException(nameof(InductorThroughHole.Tolerance)),
+            RatedCurrent = GetComponentParameter(lcscParameters, LCSCParameter.RatedCurrent)?.Cast<double>()
+                           ?? throw MissingParameterException(nameof(InductorThroughHole.RatedCurrent)),
+            DCResistance = GetComponentParameter(lcscParameters, LCSCParameter.DCResistance2)?.Cast<double>()
+                           ?? throw MissingParameterException(nameof(InductorThroughHole.DCResistance)),
+            SaturationCurrent = GetComponentParameter(lcscParameters, LCSCParameter.SaturationCurrent2)?.Cast<double>(),
+            QFrequency = GetComponentParameter(lcscParameters, LCSCParameter.QFrequency2)?.Cast<double>(),
+            FrequencySelfResonant = GetComponentParameter(lcscParameters, LCSCParameter.FrequencySelfResonant)?.Cast<double>(),
+            Type = GetComponentParameter(lcscParameters, LCSCParameter.Type)?.Cast<string>(),
+            Ratings = GetComponentParameter(lcscParameters, LCSCParameter.Ratings)?.Cast<string>(),
+            WireDiameter = GetComponentParameter(lcscParameters, LCSCParameter.WireDiameter)?.Cast<double>()
+        };
+    }
+    
 
     private static Dictionary<string, LCSCParameterDTO> GetLCSCParametersDict(IEnumerable<LCSCParameterDTO> parameters)
     {
